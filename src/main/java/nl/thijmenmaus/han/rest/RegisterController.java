@@ -7,6 +7,7 @@
 package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
+import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
 import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
 import nl.thijmenmaus.han.domain.User;
 import nl.thijmenmaus.han.rest.dto.UserDTO;
@@ -18,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/register")
 public class RegisterController {
-    private UserDAO userDAO;
+    private IUserDAO userDAO;
     private User user;
 
     @POST
@@ -38,7 +39,7 @@ public class RegisterController {
     }
 
     @Inject
-    public void setUserDAO(UserDAO userDAO) {
+    public void setUserDAO(IUserDAO userDAO) {
         this.userDAO = userDAO;
     }
 

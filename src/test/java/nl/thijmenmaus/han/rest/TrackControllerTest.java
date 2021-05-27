@@ -7,6 +7,7 @@
 package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
+import nl.thijmenmaus.han.datasource.dao.track.ITrackDAO;
 import nl.thijmenmaus.han.datasource.dao.track.TrackDAO;
 import nl.thijmenmaus.han.domain.Track;
 import nl.thijmenmaus.han.mapper.dao.TrackMapperDAO;
@@ -29,14 +30,14 @@ public class TrackControllerTest {
     private TrackController trackController;
     private TrackMapperDTO trackMapperDTO;
 
-    private TrackDAO trackDAOMock;
+    private ITrackDAO trackDAOMock;
 
     @BeforeEach
     public void setup() {
         trackController = new TrackController();
         trackMapperDTO = new TrackMapperDTO();
 
-        trackDAOMock = mock(TrackDAO.class);
+        trackDAOMock = mock(ITrackDAO.class);
 
         trackController.setTrackDAO(trackDAOMock);
         trackController.setTrackMapperDTO(trackMapperDTO);

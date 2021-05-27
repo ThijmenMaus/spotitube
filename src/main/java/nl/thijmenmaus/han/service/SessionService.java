@@ -17,6 +17,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import nl.thijmenmaus.han.common.ApplicationConfig;
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
+import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
 import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
@@ -30,7 +31,7 @@ public class SessionService {
     private static final String issuer = "spotitube-back";
 
     private ApplicationConfig config;
-    private UserDAO userDAO;
+    private IUserDAO userDAO;
 
     public Session buildSession(String username) throws NotAuthorizedException {
         try {
@@ -83,7 +84,7 @@ public class SessionService {
     }
 
     @Inject
-    public void setUserDAO(UserDAO userDAO) {
+    public void setUserDAO(IUserDAO userDAO) {
         this.userDAO = userDAO;
     }
 }

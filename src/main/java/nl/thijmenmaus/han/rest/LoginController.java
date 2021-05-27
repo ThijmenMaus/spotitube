@@ -8,6 +8,7 @@ package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
+import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
 import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
@@ -22,7 +23,7 @@ import javax.ws.rs.core.Response;
 @Path("/login")
 public class LoginController {
     private SessionService sessionService;
-    private UserDAO userDAO;
+    private IUserDAO userDAO;
     private User user;
 
     @POST
@@ -53,7 +54,7 @@ public class LoginController {
     }
 
     @Inject
-    public void setUserDAO(UserDAO userDAO) {
+    public void setUserDAO(IUserDAO userDAO) {
         this.userDAO = userDAO;
     }
 

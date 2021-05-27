@@ -9,7 +9,9 @@ package nl.thijmenmaus.han.rest;
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
 import nl.thijmenmaus.han.common.filter.IsAuthorized;
+import nl.thijmenmaus.han.datasource.dao.playlist.IPlaylistDAO;
 import nl.thijmenmaus.han.datasource.dao.playlist.PlaylistDAO;
+import nl.thijmenmaus.han.datasource.dao.track.ITrackDAO;
 import nl.thijmenmaus.han.datasource.dao.track.TrackDAO;
 import nl.thijmenmaus.han.domain.Playlist;
 import nl.thijmenmaus.han.domain.Track;
@@ -33,8 +35,8 @@ public class PlaylistController {
     private SessionService sessionService;
     private PlaylistMapperDTO playlistMapperDTO;
     private TrackMapperDTO trackMapperDTO;
-    private PlaylistDAO playlistDAO;
-    private TrackDAO trackDAO;
+    private IPlaylistDAO playlistDAO;
+    private ITrackDAO trackDAO;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -168,12 +170,12 @@ public class PlaylistController {
     }
 
     @Inject
-    public void setPlaylistDAO(PlaylistDAO playlistDAO) {
+    public void setPlaylistDAO(IPlaylistDAO playlistDAO) {
         this.playlistDAO = playlistDAO;
     }
 
     @Inject
-    public void setTrackDAO(TrackDAO trackDAO) {
+    public void setTrackDAO(ITrackDAO trackDAO) {
         this.trackDAO = trackDAO;
     }
 }

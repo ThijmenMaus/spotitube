@@ -8,6 +8,7 @@ package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
+import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
 import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
@@ -30,7 +31,7 @@ public class LoginControllerTest {
 
     private SessionService sessionServiceMock;
     private User userMock;
-    private UserDAO userDAOMock;
+    private IUserDAO userDAOMock;
 
 
     @BeforeEach
@@ -40,7 +41,7 @@ public class LoginControllerTest {
 
         sessionServiceMock = mock(SessionService.class);
         userMock = mock(User.class);
-        userDAOMock = mock(UserDAO.class);
+        userDAOMock = mock(IUserDAO.class);
 
 
         loginController.setSessionService(sessionServiceMock);

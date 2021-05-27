@@ -8,7 +8,9 @@ package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
+import nl.thijmenmaus.han.datasource.dao.playlist.IPlaylistDAO;
 import nl.thijmenmaus.han.datasource.dao.playlist.PlaylistDAO;
+import nl.thijmenmaus.han.datasource.dao.track.ITrackDAO;
 import nl.thijmenmaus.han.datasource.dao.track.TrackDAO;
 import nl.thijmenmaus.han.domain.Playlist;
 import nl.thijmenmaus.han.domain.Track;
@@ -40,8 +42,8 @@ public class PlaylistControllerTest {
     private TrackMapperDTO trackMapperDTO;
 
     private SessionService sessionServiceMock;
-    private PlaylistDAO playlistDAOMock;
-    private TrackDAO trackDAOMock;
+    private IPlaylistDAO playlistDAOMock;
+    private ITrackDAO trackDAOMock;
 
     @BeforeEach
     public void setup() {
@@ -51,8 +53,8 @@ public class PlaylistControllerTest {
         user = new User(1, "thijmen", "dadada");
 
         sessionServiceMock = mock(SessionService.class);
-        playlistDAOMock = mock(PlaylistDAO.class);
-        trackDAOMock = mock(TrackDAO.class);
+        playlistDAOMock = mock(IPlaylistDAO.class);
+        trackDAOMock = mock(ITrackDAO.class);
 
         playlistController.setSessionService(sessionServiceMock);
         playlistController.setPlaylistMapperDTO(playlistMapperDTO);
@@ -75,7 +77,7 @@ public class PlaylistControllerTest {
 
         // Act
         when(sessionServiceMock.getUser(token)).thenReturn(user);
-        PlaylistDAO spy = spy(playlistDAOMock);
+        IPlaylistDAO spy = spy(playlistDAOMock);
         doNothing().when(spy).create(submittedPlaylist.name, user.getId());
         playlists.add(newPlaylist);
         PlaylistsDTO expectedPlaylists = playlistMapperDTO.mapPlaylistsToDTO(playlists, user.getUsername());
@@ -101,7 +103,7 @@ public class PlaylistControllerTest {
         TrackDTO submittedTrack = new TrackDTO(1, "test", "test", 1, "test", 1, "test", "test", false);
 
         // Act
-        TrackDAO spy = spy(trackDAOMock);
+        ITrackDAO spy = spy(trackDAOMock);
         doNothing().when(spy).addToPlaylist(submittedTrack.id, playlistId, submittedTrack.offlineAvailable);
         tracks.add(newTrack);
         when(trackDAOMock.getTracksInPlaylist(playlistId)).thenReturn(tracks);
@@ -172,7 +174,7 @@ public class PlaylistControllerTest {
         );
         // Act
         when(sessionServiceMock.getUser(token)).thenReturn(user);
-        PlaylistDAO spy = spy(playlistDAOMock);
+        IPlaylistDAO spy = spy(playlistDAOMock);
         doNothing().when(spy).update(submittedPlaylist.name, playlistId, user.getId());
         playlists.set(playlistId - 1, expectedPlaylist);
         when(playlistDAOMock.getAll()).thenReturn(playlists);
@@ -195,7 +197,7 @@ public class PlaylistControllerTest {
         }};
         // Act
         when(sessionServiceMock.getUser(token)).thenReturn(user);
-        PlaylistDAO spy = spy(playlistDAOMock);
+        IPlaylistDAO spy = spy(playlistDAOMock);
         doNothing().when(spy).delete(playlistId, user.getId());
         playlists.remove(playlistId - 1);
         when(playlistDAOMock.getAll()).thenReturn(playlists);
@@ -218,7 +220,7 @@ public class PlaylistControllerTest {
             add(DataMocker.mockTrack());
         }};
         // Act
-        TrackDAO spy = spy(trackDAOMock);
+        ITrackDAO spy = spy(trackDAOMock);
         doNothing().when(spy).deleteFromPlaylist(trackId, playlistId);
         tracks.remove(trackId - 1);
         when(trackDAOMock.getTracksInPlaylist(playlistId)).thenReturn(tracks);

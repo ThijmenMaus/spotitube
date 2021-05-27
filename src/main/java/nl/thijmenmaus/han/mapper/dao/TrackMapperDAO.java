@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TrackMapperDAO implements IMapperDAO<Track> {
+
     @Override
     public Track mapEntityToDomain(ResultSet entity) throws SQLException {
         return new Track(

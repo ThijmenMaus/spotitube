@@ -8,6 +8,7 @@ package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
 import nl.thijmenmaus.han.common.filter.IsAuthorized;
+import nl.thijmenmaus.han.datasource.dao.track.ITrackDAO;
 import nl.thijmenmaus.han.datasource.dao.track.TrackDAO;
 import nl.thijmenmaus.han.domain.Track;
 import nl.thijmenmaus.han.mapper.dto.TrackMapperDTO;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @Path("/tracks")
 public class TrackController {
-    private TrackDAO trackDAO;
+    private ITrackDAO trackDAO;
     private TrackMapperDTO trackMapperDTO;
 
     @GET
@@ -43,7 +44,7 @@ public class TrackController {
     }
 
     @Inject
-    public void setTrackDAO(TrackDAO trackDAO) {
+    public void setTrackDAO(ITrackDAO trackDAO) {
         this.trackDAO = trackDAO;
     }
 
