@@ -14,7 +14,6 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 public class SpotitubeExceptionHandler implements ExceptionMapper<SpotitubeException> {
-
     @Override
     public Response toResponse(SpotitubeException exception) {
         return Response.status(exception.getStatus()).entity(exception.getMessage()).build();

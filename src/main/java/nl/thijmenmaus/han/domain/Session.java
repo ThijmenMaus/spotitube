@@ -11,7 +11,7 @@ public class Session {
     private String token;
 
     public Session() {
-        // Empty constructor to prevent this weird Java Dependency Injection from crashing
+        // Testing purposes
     }
 
     public Session(String user, String token) {

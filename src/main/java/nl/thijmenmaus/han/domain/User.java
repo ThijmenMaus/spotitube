@@ -14,7 +14,7 @@ public class User {
     private String password;
 
     public User() {
-        // Empty constructor to prevent this weird Java Dependency Injection from crashing
+        // Testing purposes
     }
 
     public User(int id, String username) {

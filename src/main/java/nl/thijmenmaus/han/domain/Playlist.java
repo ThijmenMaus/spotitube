@@ -16,7 +16,7 @@ public class Playlist {
     private int length;
 
     public Playlist() {
-        // Empty constructor to prevent this weird Java Dependency Injection from crashing
+        // Testing purposes
     }
 
     public Playlist(int id, String name, String owner, List<Track> tracks, int length) {

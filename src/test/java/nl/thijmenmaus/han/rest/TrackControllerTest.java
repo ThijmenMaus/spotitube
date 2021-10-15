@@ -7,12 +7,9 @@
 package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
-import nl.thijmenmaus.han.datasource.dao.track.ITrackDAO;
-import nl.thijmenmaus.han.datasource.dao.track.TrackDAO;
+import nl.thijmenmaus.han.datasource.track.ITrackDAO;
 import nl.thijmenmaus.han.domain.Track;
-import nl.thijmenmaus.han.mapper.dao.TrackMapperDAO;
 import nl.thijmenmaus.han.mapper.dto.TrackMapperDTO;
-import nl.thijmenmaus.han.rest.dto.TrackDTO;
 import nl.thijmenmaus.han.rest.dto.TracksDTO;
 import nl.thijmenmaus.han.test_util.DataMocker;
 import org.junit.jupiter.api.BeforeEach;

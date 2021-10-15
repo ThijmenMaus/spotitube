@@ -29,10 +29,10 @@ public class IsAuthorizedFilter implements ContainerRequestFilter {
             try {
                 sessionService.verify(token);
             } catch (NotAuthorizedException exception) {
-                containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+                containerRequestContext.abortWith(Response.status(Response.Status.FORBIDDEN).build());
             }
         } catch (Exception exception) {
-            containerRequestContext.abortWith(Response.status(Response.Status.INTERNAL_SERVER_ERROR).build());
+            containerRequestContext.abortWith(Response.status(Response.Status.FORBIDDEN).build());
         }
     }
 

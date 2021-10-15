@@ -7,18 +7,14 @@
 package nl.thijmenmaus.han.service;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.AlgorithmMismatchException;
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTDecodeException;
 import nl.thijmenmaus.han.common.ApplicationConfig;
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
-import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
+import nl.thijmenmaus.han.datasource.user.UserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAuthorizedException;
@@ -37,13 +33,10 @@ public class SessionServiceTest {
     @Mock
     private SessionService sessionService;
 
-    @Mock
-    private JWT jwtMock;
 
     @BeforeEach
     public void setup() {
         userDAOMock = mock(UserDAO.class);
-        jwtMock = mock(JWT.class);
         applicationConfigMock = mock(ApplicationConfig.class);
         when(applicationConfigMock.getSecret()).thenReturn("Test123Secret");
 

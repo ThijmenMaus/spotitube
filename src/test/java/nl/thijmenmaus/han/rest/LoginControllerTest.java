@@ -8,8 +8,7 @@ package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
-import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
-import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
+import nl.thijmenmaus.han.datasource.user.IUserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
 import nl.thijmenmaus.han.rest.dto.UserDTO;
@@ -17,7 +16,6 @@ import nl.thijmenmaus.han.service.SessionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Response;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

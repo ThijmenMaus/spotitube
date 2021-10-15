@@ -7,7 +7,7 @@
 package nl.thijmenmaus.han.datasource.dao;
 
 import nl.thijmenmaus.han.datasource.IConnectionFactory;
-import nl.thijmenmaus.han.datasource.dao.playlist.PlaylistDAO;
+import nl.thijmenmaus.han.datasource.playlist.PlaylistDAO;
 import nl.thijmenmaus.han.domain.Playlist;
 import nl.thijmenmaus.han.domain.User;
 import nl.thijmenmaus.han.mapper.dao.PlaylistMapperDAO;

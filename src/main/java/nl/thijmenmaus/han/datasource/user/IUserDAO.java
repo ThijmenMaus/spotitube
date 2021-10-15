@@ -4,7 +4,7 @@
  *  • https://thijmenmaus.nl/
  */
 
-package nl.thijmenmaus.han.datasource.dao.user;
+package nl.thijmenmaus.han.datasource.user;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.domain.User;

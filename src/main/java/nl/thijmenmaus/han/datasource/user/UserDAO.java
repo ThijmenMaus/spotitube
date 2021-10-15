@@ -4,7 +4,7 @@
  *  • https://thijmenmaus.nl/
  */
 
-package nl.thijmenmaus.han.datasource.dao.user;
+package nl.thijmenmaus.han.datasource.user;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.datasource.IConnectionFactory;
@@ -28,7 +28,6 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public User getByUsername(String username) throws InternalServerErrorException, EntityNotFoundException {
-
         try (Connection connection = connectionFactory.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(GET_BY_USERNAME_QUERY);
 

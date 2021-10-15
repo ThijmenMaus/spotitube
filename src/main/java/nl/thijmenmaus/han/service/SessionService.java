@@ -17,8 +17,8 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import nl.thijmenmaus.han.common.ApplicationConfig;
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
-import nl.thijmenmaus.han.datasource.dao.user.IUserDAO;
-import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
+import nl.thijmenmaus.han.datasource.user.IUserDAO;
+import nl.thijmenmaus.han.datasource.user.UserDAO;
 import nl.thijmenmaus.han.domain.Session;
 import nl.thijmenmaus.han.domain.User;
 

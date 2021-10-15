@@ -8,7 +8,7 @@ package nl.thijmenmaus.han.datasource.dao;
 
 import nl.thijmenmaus.han.common.exception.EntityNotFoundException;
 import nl.thijmenmaus.han.datasource.IConnectionFactory;
-import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
+import nl.thijmenmaus.han.datasource.user.UserDAO;
 import nl.thijmenmaus.han.domain.User;
 import nl.thijmenmaus.han.mapper.dao.UserMapperDAO;
 import nl.thijmenmaus.han.test_util.DataMocker;

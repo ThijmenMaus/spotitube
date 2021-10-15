@@ -4,7 +4,7 @@
  *  • https://thijmenmaus.nl/
  */
 
-package nl.thijmenmaus.han.datasource.dao.playlist;
+package nl.thijmenmaus.han.datasource.playlist;
 
 import nl.thijmenmaus.han.datasource.IConnectionFactory;
 import nl.thijmenmaus.han.domain.Playlist;

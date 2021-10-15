@@ -7,8 +7,7 @@
 package nl.thijmenmaus.han.rest;
 
 import nl.thijmenmaus.han.common.exception.SpotitubeException;
-import nl.thijmenmaus.han.datasource.dao.user.UserDAO;
-import nl.thijmenmaus.han.domain.Session;
+import nl.thijmenmaus.han.datasource.user.UserDAO;
 import nl.thijmenmaus.han.domain.User;
 import nl.thijmenmaus.han.rest.dto.UserDTO;
 import org.junit.jupiter.api.BeforeEach;

@@ -19,7 +19,7 @@ public class Track {
     private boolean availableOffline;
 
     public Track() {
-        // Empty constructor to prevent this weird Java Dependency Injection from crashing
+        // Testing purposes
     }
 
     public Track(int id, String title, String performer, String url, int duration, String album, String publicationDate, String description, int playcount, boolean availableOffline) {
