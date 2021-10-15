@@ -31,14 +31,13 @@ public class UserMapperDAOTest {
 
     @Test
     public void mapDTOtoDomainTest() throws SQLException {
-        // Arrange
         User expectedUser = DataMocker.mockUser();
-        // Act
+
         when(resultSet.getInt("id")).thenReturn(expectedUser.getId());
         when(resultSet.getString("username")).thenReturn(expectedUser.getUsername());
         when(resultSet.getString("password")).thenReturn(expectedUser.getPassword());
         User actualUser = userMapperDAO.mapEntityToDomain(resultSet);
-        // Assert
+
         assertEquals(actualUser.getId(), expectedUser.getId());
         assertEquals(actualUser.getUsername(), expectedUser.getUsername());
         assertEquals(actualUser.getPassword(), expectedUser.getPassword());

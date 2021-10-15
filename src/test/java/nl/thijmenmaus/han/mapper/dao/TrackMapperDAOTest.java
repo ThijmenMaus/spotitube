@@ -32,9 +32,8 @@ public class TrackMapperDAOTest {
 
     @Test
     public void mapDTOtoDomainTest() throws SQLException {
-        // Arrange
         Track expectedTrack = DataMocker.mockTrack();
-        // Act
+
         when(resultSet.getInt("id")).thenReturn(expectedTrack.getId());
         when(resultSet.getString("title")).thenReturn(expectedTrack.getTitle());
         when(resultSet.getString("performer")).thenReturn(expectedTrack.getPerformer());
@@ -45,8 +44,9 @@ public class TrackMapperDAOTest {
         when(resultSet.getString("description")).thenReturn(expectedTrack.getDescription());
         when(resultSet.getInt("playcount")).thenReturn(expectedTrack.getPlaycount());
         when(resultSet.getBoolean("available_offline")).thenReturn(expectedTrack.isAvailableOffline());
+
         Track actualTrack = trackMapperDAO.mapEntityToDomain(resultSet);
-        // Assert
+
         assertEquals(actualTrack.getId(), expectedTrack.getId());
         assertEquals(actualTrack.getTitle(), expectedTrack.getTitle());
         assertEquals(actualTrack.getPerformer(), expectedTrack.getPerformer());

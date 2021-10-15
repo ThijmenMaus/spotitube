@@ -32,15 +32,14 @@ public class PlaylistMapperDAOTest {
 
     @Test
     public void mapDTOtoDomainTest() throws SQLException {
-        // Arrange
         Playlist expectedPlaylist = DataMocker.mockPlaylist();
-        // Act
+
         when(resultSet.getInt("id")).thenReturn(expectedPlaylist.getId());
         when(resultSet.getString("name")).thenReturn(expectedPlaylist.getName());
         when(resultSet.getString("owner")).thenReturn(expectedPlaylist.getOwner());
         when(resultSet.getInt("length")).thenReturn(expectedPlaylist.getLength());
         Playlist actualPlaylist = playlistMapperDAO.mapEntityToDomain(resultSet);
-        // Assert
+
         assertEquals(actualPlaylist.getId(), expectedPlaylist.getId());
         assertEquals(actualPlaylist.getName(), expectedPlaylist.getName());
         assertEquals(actualPlaylist.getOwner(), expectedPlaylist.getOwner());

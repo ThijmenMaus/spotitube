@@ -42,7 +42,6 @@ public class RegisterControllerTest {
 
     @Test
     public void registerSuccessTest() throws SpotitubeException {
-        // Arrange
         int expectedStatusCode = 201;
         User expectedUser = new User(1, "Thijmen", "pretendThatThisIsHashed");
 
@@ -50,30 +49,25 @@ public class RegisterControllerTest {
         userDTO.user = "Thijmen";
         userDTO.password = "helloIAmCoding!";
 
-        // Act
         when(userDAOMock.doesUserExist(submittedUser.user)).thenReturn(false);
         UserDAO spy = Mockito.spy(userDAOMock);
         doNothing().when(spy).createUser(submittedUser.user, expectedUser.getPassword());
 
         Response response = registerController.register(submittedUser);
 
-        // Assert
         assertEquals(expectedStatusCode, response.getStatus());
     }
 
     @Test
-    public void regiserUserExistsTest() throws SpotitubeException {
-        // Arrange
+    public void regiserUserExistsTest() {
         int expectedStatusCode = 409;
 
         UserDTO submittedUser = new UserDTO();
         userDTO.user = "Thijmen";
         userDTO.password = "helloIAmCoding!";
 
-        // Act
         when(userDAOMock.doesUserExist(submittedUser.user)).thenReturn(true);
 
-        // Assert
         assertThrows(SpotitubeException.class, () -> {
             Response response = registerController.register(submittedUser);
             assertEquals(expectedStatusCode, response.getStatus());

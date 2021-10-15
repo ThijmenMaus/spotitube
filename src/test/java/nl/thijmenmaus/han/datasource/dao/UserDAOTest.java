@@ -30,8 +30,6 @@ public class UserDAOTest {
     private PreparedStatement statement;
     private ResultSet result;
 
-    //    private PlaylistDAO playlistDAO;
-//    private PlaylistMapperDAO playlistMapperDAO;
     private UserDAO userDAO;
     private UserMapperDAO userMapperDAO;
 
@@ -50,7 +48,6 @@ public class UserDAOTest {
 
     @Test
     public void getUserByUsernameTest() throws SQLException, EntityNotFoundException {
-        // Arrange
         String expectedQuery = "SELECT `id`, `username`, `password` FROM `user` WHERE `username` = ?";
         User expectedUser = DataMocker.mockUser();
 
@@ -60,10 +57,8 @@ public class UserDAOTest {
         when(result.next()).thenReturn(true).thenReturn(false);
         when(userMapperDAO.mapEntityToDomain(result)).thenReturn(expectedUser);
 
-        // Act
         User actualUser = userDAO.getByUsername(expectedUser.getUsername());
 
-        // Assert
         verify(connection).prepareStatement(expectedQuery);
         verify(statement).executeQuery();
         verify(statement).setString(1, expectedUser.getUsername());
@@ -72,7 +67,6 @@ public class UserDAOTest {
 
     @Test
     public void createUserTest() throws SQLException {
-        // Arrange
         String expectedQuery = "INSERT INTO `user` (`username`, `password`) VALUES (?, ?)";
         User user = DataMocker.mockUser();
 
@@ -80,10 +74,8 @@ public class UserDAOTest {
         when(connection.prepareStatement(expectedQuery)).thenReturn(statement);
         when(statement.executeQuery()).thenReturn(result);
 
-        // Act
         userDAO.createUser(user.getUsername(), user.getPassword());
 
-        // Assert
         verify(connection).prepareStatement(expectedQuery);
         verify(statement).setString(1, user.getUsername());
         verify(statement).setString(2, user.getPassword());
@@ -92,16 +84,13 @@ public class UserDAOTest {
 
     @Test
     public void doesUserExistTest() throws EntityNotFoundException {
-        // Arrange
         User expectedUser = DataMocker.mockUser();
         UserDAO userDAOMock = mock(UserDAO.class);
         when(userDAOMock.getByUsername(expectedUser.getUsername())).thenReturn(expectedUser);
         when(userDAOMock.doesUserExist(expectedUser.getUsername())).thenReturn(true);
 
-        // Act
         boolean doesUserExist = userDAOMock.doesUserExist(expectedUser.getUsername());
 
-        // Assert
         assertTrue(doesUserExist);
     }
 }

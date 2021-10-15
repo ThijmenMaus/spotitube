@@ -15,18 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TrackTest {
     @Test
     public void emptyInitalizationTest() {
-        // Arrange & Act
         Track track = new Track();
-        // Assert
+
         assertNotNull(track);
     }
 
     @Test
     public void gettersAndSettersTest() {
-        // Arrange
         Track fake = DataMocker.mockTrack();
         Track actual = new Track();
-        // Act
+
         actual.setId(fake.getId());
         actual.setTitle(fake.getTitle());
         actual.setPerformer(fake.getPerformer());
@@ -37,7 +35,7 @@ public class TrackTest {
         actual.setDescription(fake.getDescription());
         actual.setPlaycount(fake.getPlaycount());
         actual.setAvailableOffline(fake.isAvailableOffline());
-        // Assert
+
         assertEquals(actual.getId(), fake.getId());
         assertEquals(actual.getTitle(), fake.getTitle());
         assertEquals(actual.getPerformer(), fake.getPerformer());

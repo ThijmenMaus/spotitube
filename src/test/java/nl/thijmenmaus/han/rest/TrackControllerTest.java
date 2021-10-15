@@ -45,7 +45,6 @@ public class TrackControllerTest {
 
     @Test
     public void getTracksTest() throws SpotitubeException {
-        // Arrange
         int expectedStatusCode = 200;
         List<Track> tracks = new ArrayList<>(){{
             add(DataMocker.mockTrack());
@@ -54,17 +53,14 @@ public class TrackControllerTest {
         }};
         int playlistId = 2;
 
-        // Act
         when(trackDAOMock.getTracksNotInPlaylist(playlistId)).thenReturn(tracks);
         TracksDTO expectedTracks = trackMapperDTO.mapTracksToDTO(tracks);
 
         Response response = trackController.getTracks(playlistId);
 
-        // Assert
         assertEquals(expectedStatusCode, response.getStatus());
         assertEquals(tracks.get(0).getTitle(), expectedTracks.tracks.get(0).title);
         assertEquals(tracks.get(1).getTitle(), expectedTracks.tracks.get(1).title);
         assertEquals(tracks.get(2).getTitle(), expectedTracks.tracks.get(2).title);
-
     }
 }

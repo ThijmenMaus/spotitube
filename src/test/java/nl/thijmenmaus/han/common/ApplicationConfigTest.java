@@ -31,31 +31,27 @@ public class ApplicationConfigTest {
 
     @Test
     public void initializeTest() throws IOException {
-        // Arrange
         Properties spy = spy(propertiesMock);
-        // Act
+
         doNothing().when(spy).load(Objects.requireNonNull(ApplicationConfig.class.getClassLoader().getResourceAsStream("application.properties")));
-        // Assert
+
         assertNotNull(applicationConfig.getProperties());
     }
 
     @Test
     public void getPropertiesTest() {
-        // Arrange & Act
         Properties properties = applicationConfig.getProperties();
-        // Assert
+
         assertNotNull(properties);
     }
 
     @Test
     public void setPropertiesTest() {
-        // Arrange
         Properties properties = new Properties();
-        // Act
-        applicationConfig.setProperties(properties);
-        // Assert
-        assertEquals(properties, applicationConfig.getProperties());
 
+        applicationConfig.setProperties(properties);
+
+        assertEquals(properties, applicationConfig.getProperties());
     }
 
 }

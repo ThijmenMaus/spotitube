@@ -51,7 +51,6 @@ public class LoginControllerTest {
 
     @Test
     public void loginSuccessTest() throws EntityNotFoundException, SpotitubeException {
-        // Arrange
         int expectedStatusCode = 200;
         User expectedUser = new User(1, "Thijmen", "pretendThatThisIsHashed");
 
@@ -59,20 +58,17 @@ public class LoginControllerTest {
         userDTO.user = "Thijmen";
         userDTO.password = "helloIAmCoding!";
 
-        // Act
         when(userDAOMock.getByUsername(submittedUser.user)).thenReturn(expectedUser);
         when(userMock.doesPasswordMatch(submittedUser.password, expectedUser.getPassword())).thenReturn(true);
         when(sessionServiceMock.buildSession(submittedUser.user)).thenReturn(new Session("thijmen", "pretentThatThisIsAToken"));
 
         Response response = loginController.login(submittedUser);
 
-        // Assert
         assertEquals(expectedStatusCode, response.getStatus());
     }
 
     @Test
     public void loginWrongPasswordTest() throws EntityNotFoundException {
-        // Arrange
         int expectedStatusCode = 401;
         User expectedUser = new User(1, "Thijmen", "pretendThatThisIsHashed");
 
@@ -80,12 +76,9 @@ public class LoginControllerTest {
         userDTO.user = "Thijmen";
         userDTO.password = "helloIAmCoding!";
 
-        // Act
         when(userDAOMock.getByUsername(submittedUser.user)).thenReturn(expectedUser);
         when(userMock.doesPasswordMatch(submittedUser.password, expectedUser.getPassword())).thenReturn(false);
 
-
-        // Assert
         assertThrows(SpotitubeException.class, () -> {
             Response response = loginController.login(submittedUser);
             assertEquals(expectedStatusCode, response.getStatus());
@@ -94,17 +87,14 @@ public class LoginControllerTest {
 
     @Test
     public void userNotFoundTest() throws EntityNotFoundException {
-        // Arrange
         int expectedStatusCode = 404;
 
         UserDTO submittedUser = new UserDTO();
         userDTO.user = "Thijmen";
         userDTO.password = "helloIAmCoding!";
 
-        // Act
         when(userDAOMock.getByUsername(submittedUser.user)).thenThrow(new EntityNotFoundException(User.class));
 
-        // Assert
         assertThrows(SpotitubeException.class, () -> {
             Response response = loginController.login(submittedUser);
             assertEquals(expectedStatusCode, response.getStatus());

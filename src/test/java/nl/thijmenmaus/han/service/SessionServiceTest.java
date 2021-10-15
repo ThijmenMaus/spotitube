@@ -55,16 +55,12 @@ public class SessionServiceTest {
 
     @Test
     public void buildSessionTest() throws EntityNotFoundException {
-        // Arrange
         User expectedUser = new User(1, "Thijmen");
         when(userDAOMock.getByUsername(expectedUser.getUsername())).thenReturn(expectedUser);
 
         Session expected = new Session("Thijmen", sessionService.generateToken(expectedUser.getId(), expectedUser.getUsername()));
-
-        // Act
         Session actual = sessionService.buildSession("Thijmen");
 
-        // Assert
         assertEquals(expected.getUser(), actual.getUser());
         assertEquals(expected.getToken(), actual.getToken());
     }
@@ -79,18 +75,13 @@ public class SessionServiceTest {
 
     @Test
     public void verifyTest() {
-        // Arrange
         String token = sessionService.generateToken(1, "Thijmen");
-        // Act & Assert
         sessionService.verify(token);
     }
 
     @Test
     public void verifyUnauthorizedTest() {
-        // Arrange
         String token = sessionService.generateToken(1, "Thijmen");
-
-        // Act & Assert
         assertThrows(NotAuthorizedException.class, () -> {
             when(applicationConfigMock.getSecret()).thenReturn("WrongSecret");
             sessionService.verify(token);
@@ -99,23 +90,18 @@ public class SessionServiceTest {
 
     @Test
     public void getUserFromTokenTest() throws EntityNotFoundException {
-        // Arrange
         User expectedUser = new User(1, "Thijmen");
         String token = sessionService.generateToken(expectedUser.getId(), expectedUser.getUsername());
 
-        // Act
         User actualUser = sessionService.getUser(token);
 
-        // Assert
         assertEquals(expectedUser.getId(), actualUser.getId());
         assertEquals(expectedUser.getUsername(), actualUser.getUsername());
     }
 
     @Test
     public void jwtDecodeFailureTest() {
-        // Arrange
         String token = "DADADADATOKEN";
-        // Assert
         assertThrows(InternalServerErrorException.class, () -> {
             sessionService.getUser(token);
         });

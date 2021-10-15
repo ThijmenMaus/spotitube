@@ -31,6 +31,7 @@ hs_err_pid*
 
 # intellij
 /.idea
+*.iml
 
 # secret files
 /src/main/resources/database.properties
